@@ -1,0 +1,54 @@
+{% extends 'phrase_app/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row align-items-center mb-5">
+    <div class="col-md-6">
+        <h1 class="display-4 fw-bold mb-4">Transform Speech Into Language Learning</h1>
+        <p class="lead mb-4">PhraseBridge turns your multilingual audio into flashcards, making language learning more natural and personalized.</p>
+        <div class="d-grid gap-2 d-md-flex">
+            <a href="{% url 'transcribe_page' %}" class="btn btn-primary btn-lg px-4 me-md-2">Create Flashcards</a>
+            <a href="{% url 'lessons_list' %}" class="btn btn-outline-secondary btn-lg px-4">View Lessons</a>
+        </div>
+    </div>
+    <div class="col-md-6 text-center">
+        <img src="https://via.placeholder.com/500x350?text=Language+Learning+Illustration" alt="Language Learning" class="img-fluid rounded shadow mt-4 mt-md-0">
+    </div>
+</div>
+
+<hr class="my-5">
+
+<div class="row">
+    <div class="col-12 text-center mb-5">
+        <h2 class="section-title d-inline-block">How It Works</h2>
+    </div>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card h-100 p-4 text-center">
+            <div class="card-body">
+                <h3 class="h5 card-title mb-3">1. Upload or Record Audio</h3>
+                <p class="card-text">Submit an audio file in any language or record directly through your browser.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 p-4 text-center">
+            <div class="card-body">
+                <h3 class="h5 card-title mb-3">2. Automatic Transcription</h3>
+                <p class="card-text">Our system transcribes your audio and extracts key phrases and sentences.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100 p-4 text-center">
+            <div class="card-body">
+                <h3 class="h5 card-title mb-3">3. Learn with Flashcards</h3>
+                <p class="card-text">Practice with generated flashcards showing phrases and their translations.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

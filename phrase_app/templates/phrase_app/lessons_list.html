@@ -1,0 +1,35 @@
+{% extends 'phrase_app/base.html' %}
+
+{% block title %}My Lessons{% endblock %}
+
+{% block content %}
+<h1 class="section-title mb-4">My Lessons</h1>
+
+{% if lessons %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for lesson in lessons %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ lesson.title }}</h5>
+                    <p class="card-text">{{ lesson.description }}</p>
+                    <p class="card-text text-muted">
+                        <small>Created: {{ lesson.created_at|date:"F d, Y" }}</small><br>
+                        <small>{{ lesson.flashcard_count }} flashcards</small>
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                    <a href="{% url 'lesson_detail' lesson.id %}" class="btn btn-primary">Study Flashcards</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="text-center py-5">
+        <h3>You don't have any lessons yet</h3>
+        <p class="lead mb-4">Create your first lesson by uploading an audio file or recording.</p>
+        <a href="{% url 'transcribe_page' %}" class="btn btn-primary btn-lg">Create Your First Lesson</a>
+    </div>
+{% endif %}
+{% endblock %}
