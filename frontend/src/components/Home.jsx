@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
+import CSSParrot from './CSSParrot';
 
 const Home = () => {
   // Array of greetings in different languages
@@ -24,34 +25,45 @@ const Home = () => {
     { text: "Salam", language: "Persian" },
     { text: "Sawasdee", language: "Thai" },
     { text: "Merhaba", language: "Turkish" },
-    { text: "Shalom", language: "Hebrew" }
+    { text: "Shalom", language: "Hebrew" },
+    { text: "Aloha", language: "Hawaiian" },
+    { text: "Salut", language: "Romanian" },
+    { text: "Hej", language: "Danish" },
+    { text: "Dzień dobry", language: "Polish" },
   ];
-
-  // Create two separate arrays for top and bottom rows (different speeds)
-  const topRowGreetings = greetings.slice(0, 10);
-  const bottomRowGreetings = greetings.slice(10);
+  
+  // Divide greetings into 4 rows
+  const rowCount = 4;
+  const rowData = [];
+  const itemsPerRow = Math.ceil(greetings.length / rowCount);
+  
+  for (let i = 0; i < rowCount; i++) {
+    const startIndex = i * itemsPerRow;
+    const endIndex = Math.min(startIndex + itemsPerRow, greetings.length);
+    rowData.push(greetings.slice(startIndex, endIndex));
+  }
 
   return (
     <div className="home">
       <section className="hero">
-        {/* Background scrolling greetings */}
-        <div className="scrolling-greetings">
-          <div className="greetings-row top-row">
-            {topRowGreetings.concat(topRowGreetings).map((greeting, index) => (
-              <div key={`top-${index}`} className="greeting-item">
-                <span className="greeting-text">{greeting.text}</span>
-                <span className="greeting-language">{greeting.language}</span>
-              </div>
-            ))}
-          </div>
-          <div className="greetings-row bottom-row">
-            {bottomRowGreetings.concat(bottomRowGreetings).map((greeting, index) => (
-              <div key={`bottom-${index}`} className="greeting-item">
-                <span className="greeting-text">{greeting.text}</span>
-                <span className="greeting-language">{greeting.language}</span>
-              </div>
-            ))}
-          </div>
+        <div className="scrolling-greetings-container">
+          {rowData.map((row, rowIndex) => (
+            <div 
+              key={rowIndex} 
+              className={`greeting-row ${rowIndex % 2 === 0 ? 'scroll-left' : 'scroll-right'}`}
+              style={{
+                animationDuration: `${60 + rowIndex * 15}s`,
+                top: `${(100 / (rowCount + 1)) * (rowIndex + 1)}%`
+              }}
+            >
+              {row.concat(row).map((greeting, index) => (
+                <div key={`${rowIndex}-${index}`} className="floating-greeting">
+                  <span className="greeting-text">{greeting.text}</span>
+                  <span className="greeting-language">{greeting.language}</span>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
 
         <div className="container">
@@ -64,7 +76,7 @@ const Home = () => {
             </div>
           </div>
           <div className="hero-image">
-            <img src="https://via.placeholder.com/500x350?text=Language+Learning+Illustration" alt="Language Learning" />
+            <CSSParrot />
           </div>
         </div>
       </section>

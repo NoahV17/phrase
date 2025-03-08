@@ -1,0 +1,254 @@
+.parrot-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 350px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Speech bubble */
+.speech-bubble {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 15px;
+  min-width: 200px;
+  max-width: 250px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  z-index: 10;
+  animation: bobbing 2s ease-in-out infinite alternate;
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: 15px;
+  left: -15px;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-right-color: white;
+  border-left: 0;
+  margin-top: -15px;
+}
+
+.speech-bubble p {
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--primary-color, #4a6fdc);
+}
+
+/* Parrot base */
+.parrot {
+  position: relative;
+  width: 220px;
+  height: 260px;
+}
+
+/* Parrot head */
+.parrot-head {
+  position: absolute;
+  width: 120px;
+  height: 100px;
+  background-color: #31AA39; /* Green head */
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  top: 30px;
+  left: 50px;
+  z-index: 2;
+}
+
+.parrot-face {
+  position: absolute;
+  width: 80px;
+  height: 65px;
+  background-color: #37BF41; /* Lighter green face */
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  top: 15px;
+  left: 20px;
+}
+
+.parrot-eye {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 50%;
+  top: 30px;
+  left: 55px;
+  z-index: 3;
+}
+
+.parrot-eye-pupil {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: black;
+  border-radius: 50%;
+  top: 36px;
+  left: 61px;
+  z-index: 4;
+}
+
+/* Parrot beak */
+.parrot-beak {
+  position: absolute;
+  width: 60px;
+  height: 50px;
+  top: 60px;
+  left: 90px;
+  z-index: 3;
+}
+
+.parrot-beak-top {
+  position: absolute;
+  width: 50px;
+  height: 25px;
+  background-color: #FFD432; /* Yellow beak */
+  border-radius: 50% 50% 0 0;
+  top: 0;
+  left: 0;
+  transform-origin: bottom left;
+  transform: rotate(15deg);
+  z-index: 4;
+}
+
+.parrot-beak-bottom {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  background-color: #FFC107; /* Darker yellow beak bottom */
+  border-radius: 0 0 50% 50%;
+  top: 20px;
+  left: 5px;
+  z-index: 3;
+  transform-origin: top center;
+}
+
+/* Speaking animation */
+.parrot-beak.speaking .parrot-beak-bottom {
+  animation: speak 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes speak {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(5px);
+  }
+}
+
+/* Parrot body */
+.parrot-body {
+  position: absolute;
+  width: 120px;
+  height: 140px;
+  background-color: #FF5722; /* Orange body */
+  border-radius: 50% 50% 60% 40% / 40% 40% 60% 60%;
+  top: 100px;
+  left: 50px;
+}
+
+.parrot-wing {
+  position: absolute;
+  width: 80px;
+  height: 120px;
+  background-color: #E91E63; /* Pink wing */
+  border-radius: 50% 60% 60% 40% / 30% 40% 60% 70%;
+  top: 20px;
+  left: -20px;
+  transform: rotate(-20deg);
+  z-index: 1;
+}
+
+.parrot-tail {
+  position: absolute;
+  width: 70px;
+  height: 90px;
+  background-color: #3F51B5; /* Indigo tail */
+  border-radius: 0 20px 0 60px;
+  top: 70px;
+  left: 110px;
+  transform: rotate(-30deg);
+}
+
+/* Parrot feet */
+.parrot-feet {
+  position: absolute;
+  width: 120px;
+  height: 30px;
+  top: 230px;
+  left: 50px;
+  z-index: 0;
+}
+
+.parrot-foot {
+  position: absolute;
+  width: 12px;
+  height: 30px;
+  background-color: #FFA000; /* Gold feet */
+  z-index: 1;
+}
+
+.parrot-foot.left {
+  left: 40px;
+}
+
+.parrot-foot.right {
+  left: 80px;
+}
+
+.parrot-foot:before {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 10px;
+  background-color: #FFA000;
+  border-radius: 50% 50% 0 0;
+  bottom: -5px;
+  left: -5px;
+  transform: rotate(-30deg);
+}
+
+.parrot-foot:after {
+  content: '';
+  position: absolute;
+  width: 15px;
+  height: 10px;
+  background-color: #FFA000;
+  border-radius: 50% 50% 0 0;
+  bottom: -5px;
+  left: 2px;
+  transform: rotate(30deg);
+}
+
+/* Bobbing animation */
+@keyframes bobbing {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Make the parrot subtly move */
+.parrot {
+  animation: sway 3s ease-in-out infinite alternate;
+}
+
+@keyframes sway {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(3deg);
+  }
+}
